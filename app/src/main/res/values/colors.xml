@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="cobalt_blue">#2563EB</color>     <!-- Primary Action & Active Tab -->
+    <color name="emerald_green">#00A86B</color>   <!-- Report FAB / Positive -->
+    <color name="water_blue">#EBF3FE</color>      <!-- Card Surface / Background Tint -->
+    <color name="dark_slate">#1F2937</color>      <!-- High Contrast Text (NFR 2) -->
+    <color name="slate_gray">#64748B</color>      <!-- Subtitles & Inactive Icons -->
+    <color name="emergency_red">#DC2626</color>   <!-- Urgent SLA Countdown Alerts -->
+    <color name="pure_white">#FFFFFF</color>
 </resources>
