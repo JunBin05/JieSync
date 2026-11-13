@@ -1,118 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/water_blue"
-    android:padding="16dp">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/tv_header"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="← Report Facility Fault"
-        android:textColor="@color/dark_slate"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="28dp">
 
-    <!-- Section 1 Header -->
-    <TextView
-        android:id="@+id/tv_section_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="1. Location &amp; Asset"
-        android:textColor="@color/dark_slate"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tv_header"
-        app:layout_constraintStart_toStartOf="parent" />
+        <!-- Header -->
+        <TextView
+            android:id="@+id/tv_header_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report Incident"
+            android:textColor="@color/dark_slate"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
-    <!-- Location Card -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_location"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/pure_white"
-        app:cardCornerRadius="12dp"
-        app:strokeColor="#CBD5E1"
-        app:strokeWidth="1dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_section_1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:id="@+id/tv_report_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Fast-track repair via AI triage and consensus"
+            android:textColor="@color/slate_gray"
+            android:textSize="12sp" />
 
-        <LinearLayout
+        <!-- Auto-detected Facility Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_detected_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="14dp">
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/pure_white"
+            app:strokeColor="#E2E8F0"
+            app:strokeWidth="1dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📍 KK10 - Block B • Ground Floor Male Restroom"
-                android:textColor="@color/cobalt_blue"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btn_scan_tag"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/water_blue"
-                android:text="Scan Door QR / NFC Tag"
-                android:textAllCaps="false"
-                android:textColor="@color/cobalt_blue" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
 
-    <!-- Section 2 Header -->
-    <TextView
-        android:id="@+id/tv_section_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="2. Photo Evidence &amp; AI Triage"
-        android:textColor="@color/dark_slate"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/card_location"
-        app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DETECTED FACILITY (GPS)"
+                    android:textColor="@color/cobalt_blue"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
 
-    <!-- Photo Container -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_photo_triage"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/pure_white"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_section_2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+                <TextView
+                    android:id="@+id/tv_facility_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="KK10 - Block B (Ground Floor)"
+                    android:textColor="@color/dark_slate"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/tv_facility_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Restroom Male 01 • Accuracy: ±4m"
+                    android:textColor="@color/slate_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Photo Evidence Viewport (CameraX / AI Triage Anchor) -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="[Camera Photo Preview / AI Triage Frame]"
-            android:textColor="@color/slate_gray" />
-    </com.google.android.material.card.MaterialCardView>
+            android:layout_marginTop="18dp"
+            android:text="Photo Evidence (AI Auto-Classification)"
+            android:textColor="@color/dark_slate"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-    <!-- Submit CTA Button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_submit_report"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/emerald_green"
-        android:text="Submit Report (+10 XP)"
-        android:textAllCaps="false"
-        app:cornerRadius="8dp"
-        app:layout_constraintTop_toBottomOf="@id/card_photo_triage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_photo_viewport"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#F1F5F9"
+            app:strokeColor="#CBD5E1"
+            app:strokeWidth="1dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- Placeholder Preview for AI Image -->
+                <ImageView
+                    android:id="@+id/iv_incident_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Incident Photo Preview" />
+
+                <LinearLayout
+                    android:id="@+id/container_camera_prompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@android:drawable/ic_menu_camera"
+                        app:tint="@color/cobalt_blue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Tap to capture photo"
+                        android:textColor="@color/dark_slate"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Edge AI identifies fault severity automatically"
+                        android:textColor="@color/slate_gray"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- AI Confidence Tag Overlay -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_ai_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/pure_white"
+                    app:strokeWidth="0dp">
+
+                    <TextView
+                        android:id="@+id/tv_ai_prediction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="4dp"
+                        android:text="AI Ready • Tap Camera"
+                        android:textColor="@color/emerald_green"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Fault Category Selection -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Fault Category"
+            android:textColor="@color/dark_slate"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chip_clogged_toilet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/cobalt_blue"
+                    android:text="Toilet Overflow"
+                    android:textAllCaps="false"
+                    android:textColor="@color/pure_white"
+                    android:textSize="12sp"
+                    app:cornerRadius="19dp"
+                    app:elevation="0dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chip_water_leak"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/pure_white"
+                    android:text="Water Leakage"
+                    android:textAllCaps="false"
+                    android:textColor="@color/dark_slate"
+                    android:textSize="12sp"
+                    app:cornerRadius="19dp"
+                    app:strokeColor="#CBD5E1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chip_pipe_burst"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/pure_white"
+                    android:text="Pipe Burst"
+                    android:textAllCaps="false"
+                    android:textColor="@color/dark_slate"
+                    android:textSize="12sp"
+                    app:cornerRadius="19dp"
+                    app:strokeColor="#CBD5E1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chip_no_water"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:backgroundTint="@color/pure_white"
+                    android:text="No Water Supply"
+                    android:textAllCaps="false"
+                    android:textColor="@color/dark_slate"
+                    android:textSize="12sp"
+                    app:cornerRadius="19dp"
+                    app:strokeColor="#CBD5E1" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Urgency SLA Level -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Urgency Level (SLA Window)"
+            android:textColor="@color/dark_slate"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_urgency_low"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:backgroundTint="@color/pure_white"
+                android:text="Low (24h)"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_slate"
+                android:textSize="11sp"
+                app:cornerRadius="10dp"
+                app:strokeColor="#CBD5E1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_urgency_medium"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="4dp"
+                android:backgroundTint="@color/pure_white"
+                android:text="Medium (6h)"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_slate"
+                android:textSize="11sp"
+                app:cornerRadius="10dp"
+                app:strokeColor="#CBD5E1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_urgency_critical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:backgroundTint="@color/emergency_red"
+                android:text="Critical (1h)"
+                android:textAllCaps="false"
+                android:textColor="@color/pure_white"
+                android:textSize="11sp"
+                app:cornerRadius="10dp"
+                app:elevation="0dp" />
+        </LinearLayout>
+
+        <!-- Submit Report CTA -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_submit_report"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="26dp"
+            android:backgroundTint="@color/emerald_green"
+            android:text="Submit Incident (+10 XP)"
+            android:textAllCaps="false"
+            android:textColor="@color/pure_white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            app:elevation="0dp" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
