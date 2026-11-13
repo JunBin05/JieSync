@@ -1,37 +1,39 @@
 package my.edu.um.jiesync
 
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import my.edu.um.jiesync.ui.HeatmapScreen
+import my.edu.um.jiesync.ui.LoginScreen
+import my.edu.um.jiesync.ui.ProfileLeaderboardScreen
+import my.edu.um.jiesync.ui.ReportIncidentScreen
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var container: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        container = findViewById(R.id.nav_host_container)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        // Show Heatmap by default
-        loadLayout(R.layout.fragment_heatmap)
+        // Start at Screen 01 (Login)
+        if (savedInstanceState == null) {
+            loadFragment(LoginScreen(), addToBackStack = false)
+        }
 
-        // Switch screens on tab click
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_heatmap -> {
-                    loadLayout(R.layout.fragment_heatmap)
+                    loadFragment(HeatmapScreen())
                     true
                 }
                 R.id.nav_report -> {
-                    loadLayout(R.layout.fragment_report_incident)
+                    loadFragment(ReportIncidentScreen())
                     true
                 }
                 R.id.nav_profile -> {
-                    loadLayout(R.layout.fragment_profile)
+                    loadFragment(ProfileLeaderboardScreen())
                     true
                 }
                 else -> false
@@ -39,9 +41,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadLayout(layoutResId: Int) {
-        container.removeAllViews()
-        val view = layoutInflater.inflate(layoutResId, container, false)
-        container.addView(view)
+    fun loadFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+        val transaction = supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+        if (addToBackStack) {
+            transaction.addToBackStack(null)
+        }
+        transaction.commit()
     }
 }
