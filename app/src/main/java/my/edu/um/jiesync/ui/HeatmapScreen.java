@@ -19,10 +19,7 @@ public class HeatmapScreen extends Fragment {
         View view = inflater.inflate(R.layout.fragment_heatmap, container, false);
 
         // Tapping the nearby restroom card inspects the issue on Verify Fix (Screen 04)
-        MaterialCardView facilityCard = view.findViewById(R.id.card_detected_location);
-        if (facilityCard == null) {
-            facilityCard = view.findViewById(R.id.card_heatmap);
-        }
+        MaterialCardView facilityCard = view.findViewById(R.id.card_heatmap);
 
         if (facilityCard != null) {
             facilityCard.setOnClickListener(v -> {
