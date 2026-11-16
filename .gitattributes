@@ -1,0 +1,8 @@
+# Mark XML, Gradle build scripts, and helper scripts as vendored so GitHub Linguist identifies the repository as 100% Java
+*.xml linguist-vendored
+*.gradle linguist-vendored
+*.properties linguist-vendored
+*.png linguist-vendored
+*.PNG linguist-vendored
+gradlew linguist-vendored
+gradlew.bat linguist-vendored
